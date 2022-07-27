@@ -1,7 +1,6 @@
-﻿//using MuayThaiApi.Entity.Security;
-using CarMuayTahiSeguimiento.Tools;
+﻿using CarMuayTahiSeguimiento.Tools;
+using CarMuayTahiSeguimiento.Tools.Enums;
 using System.Collections.Generic;
-using System.Net.Http;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,7 +17,7 @@ namespace CarMuayTahiSeguimiento.Views
             RestHelper prueba = new RestHelper(
                 @"http://ingbame.somee.com/api",
                 "Security",
-                HttpMethod.Get
+                HttpMethodsEnum.Get
             );
             prueba.RestRequest();
             //if (pagosList != null)

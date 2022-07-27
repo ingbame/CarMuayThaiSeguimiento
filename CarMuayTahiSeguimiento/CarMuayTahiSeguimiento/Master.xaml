@@ -8,7 +8,7 @@
              Title="FlyoutMenu">
     <StackLayout BackgroundColor="White">
         <ListView x:Name="lvMenu" x:FieldModifier="public">
-            <ListView.ItemsSource>
+            <!--<ListView.ItemsSource>
                 <x:Array Type="{x:Type models:FlyoutItemPage}">
                     <models:FlyoutItemPage Title="Inicio"
                                           IconSource="icon_about.png"
@@ -23,7 +23,7 @@
                                           IconSource="icon_feed.png"
                                           TargetPage="{x:Type views:HistorialClasesTomadas}" />
                 </x:Array>
-            </ListView.ItemsSource>
+            </ListView.ItemsSource>-->
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
