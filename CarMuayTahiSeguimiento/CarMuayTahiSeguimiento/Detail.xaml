@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:CarMuayTahiSeguimiento.Extensions"
-             x:Class="CarMuayTahiSeguimiento.Views.PantallaInicio">
+             x:Class="CarMuayTahiSeguimiento.Detail">
     <ContentPage.Content>
         <StackLayout BackgroundColor="#203B8C"
                      Spacing="0">
@@ -27,15 +26,9 @@
                    BackgroundColor="Black">
                 <StackLayout VerticalOptions="Center"
                              Spacing="20">
-                    <Image  Source="car_muay_thai_black_logo.jpg"/>
+                    <Image  Source="car_muay_thai_black_logo.jpg" />
                     <Label HorizontalOptions="Center"
                            TextColor="Azure">Revisión de pagos y asistencia de clases</Label>
-                    <Button TextTransform="None"
-                            Text="Entrar al menú"
-                            BackgroundColor="#D21F25"
-                            CornerRadius="15"
-                            FontSize="Medium"
-                            FontAttributes="Bold" />
                 </StackLayout>
             </Frame>
         </StackLayout>

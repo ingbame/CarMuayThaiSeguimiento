@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarMuayTahiSeguimiento.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,12 +8,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace CarMuayTahiSeguimiento.Views
+namespace CarMuayTahiSeguimiento
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PantallaInicio : ContentPage
+    public partial class Master : ContentPage
     {
-        public PantallaInicio()
+        public Master()
         {
             InitializeComponent();
         }

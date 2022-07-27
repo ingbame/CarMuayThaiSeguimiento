@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CarMuayTahiSeguimiento"
+             xmlns:models="clr-namespace:CarMuayTahiSeguimiento.Models"
+             xmlns:views="clr-namespace:CarMuayTahiSeguimiento.Views"
+             x:Class="CarMuayTahiSeguimiento.Master"
+             Title="FlyoutMenu">
+    <StackLayout BackgroundColor="White">
+        <ListView x:Name="lvMenu" x:FieldModifier="public">
+            <ListView.ItemsSource>
+                <x:Array Type="{x:Type models:FlyoutItemPage}">
+                    <models:FlyoutItemPage Title="Inicio"
+                                          IconSource="icon_about.png"
+                                          TargetPage="{x:Type local:Detail}" />
+                    <models:FlyoutItemPage Title="Registrar pago"
+                                          IconSource="icon_feed.png"
+                                          TargetPage="{x:Type views:RegistroDePago}" />
+                    <models:FlyoutItemPage Title="Pagos"
+                                          IconSource="icon_feed.png"
+                                          TargetPage="{x:Type views:vwPagos}" />
+                    <models:FlyoutItemPage Title="Historial de clases"
+                                          IconSource="icon_feed.png"
+                                          TargetPage="{x:Type views:HistorialClasesTomadas}" />
+                </x:Array>
+            </ListView.ItemsSource>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="33" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding IconSource}" />
+                            <Label Grid.Column="1" Text="{Binding Title}" 
+                                   VerticalOptions="Center"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <!--<Button TextTransform="None"
+                Text="Registrar Pago"
+                x:Name="btnRegistraPago"
+                BackgroundColor="Black"
+                TextColor="White"
+                ImageSource="icon_feed.png"
+                Clicked="btnRegistraPago_Clicked" />
+        <Button TextTransform="None"
+                Text="Pagos"
+                x:Name="btnPagos"
+                BackgroundColor="Black"
+                TextColor="White"
+                ImageSource="icon_feed.png"
+                Clicked="btnPagos_Clicked" />
+        <Button TextTransform="None"
+                Text="Historial de clases"
+                x:Name="btnHistorialClases"
+                BackgroundColor="Black"
+                TextColor="White"
+                ImageSource="icon_feed.png"
+                Clicked="btnHistorialClases_Clicked" />-->
+    </StackLayout>
+</ContentPage>

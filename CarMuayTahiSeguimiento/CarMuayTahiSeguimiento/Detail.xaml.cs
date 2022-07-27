@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace CarMuayTahiSeguimiento.Views
+namespace CarMuayTahiSeguimiento
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PagosPor15Clases : ContentPage
+    public partial class Detail : ContentPage
     {
-        public PagosPor15Clases()
+        public Detail()
         {
             InitializeComponent();
         }
