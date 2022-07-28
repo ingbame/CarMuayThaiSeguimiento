@@ -21,7 +21,6 @@ namespace CarMuayTahiSeguimiento.Tools
         public object Body { get; set; }
         #endregion
         #region Result params
-        public object Response { get; set; }
         public bool Error { get; set; }
         public string Message { get; set; }
         #endregion
@@ -34,7 +33,7 @@ namespace CarMuayTahiSeguimiento.Tools
             Params = _params;
             Body = body;
         }
-        public async void RestRequest()
+        public async Task<T> RestRequest<T>()
         {
             try
             {
@@ -50,12 +49,12 @@ namespace CarMuayTahiSeguimiento.Tools
                         request.RequestUri = new Uri(uri);
                         request.Method = HttpMethod.Get;
                         request.Headers.Add("Accept", "aplication/json");
-                        HttpResponseMessage responseGet = await client.SendAsync(request);
+                        HttpResponseMessage responseGet = client.SendAsync(request).Result;
                         if (responseGet.StatusCode == HttpStatusCode.OK)
                         {
                             string content = await responseGet.Content.ReadAsStringAsync();
-                            var resultado = JsonConvert.DeserializeObject<object>(content);
-                            this.Response = resultado;
+                            var resultado = JsonConvert.DeserializeObject<T>(content);
+                            return resultado;
                         }
                         else { 
                             this.Error = true;
@@ -70,8 +69,8 @@ namespace CarMuayTahiSeguimiento.Tools
                         if (responsePost.StatusCode == HttpStatusCode.OK)
                         {
                             string content = await responsePost.Content.ReadAsStringAsync();
-                            var resultado = JsonConvert.DeserializeObject<object>(content);
-                            this.Response = resultado;
+                            var resultado = JsonConvert.DeserializeObject<T>(content);
+                            return resultado;
                         }
                         else
                         {
@@ -89,7 +88,7 @@ namespace CarMuayTahiSeguimiento.Tools
                         this.Message = "La petición HTTP no está configurada";
                         break;
                 }
-
+                return default(T);
             }
             catch (Exception ex)
             {
@@ -97,6 +96,7 @@ namespace CarMuayTahiSeguimiento.Tools
                 this.Message = ex.Message;
                 if (ex.InnerException != null)
                     this.Message += $"\n{ex.InnerException.Message}";
+                return default(T);
             }
 
         }

@@ -1,4 +1,6 @@
 ﻿using CarMuayTahiSeguimiento.Models;
+using CarMuayTahiSeguimiento.Tools;
+using CarMuayTahiSeguimiento.Tools.Enums;
 using CarMuayTahiSeguimiento.Views;
 using System;
 using System.Collections.Generic;
@@ -20,14 +22,31 @@ namespace CarMuayTahiSeguimiento
             InitializeComponent();
 
             var asm = typeof(Master).Assembly.GetName();
-            MenuItems = new List<FlyoutItemPage>
-            {
-                new FlyoutItemPage{ Title = "Inicio", IconSource="icon_about.png", TargetPage = Type.GetType($"CarMuayTahiSeguimiento.Detail, {asm}")},
-                new FlyoutItemPage{ Title = "Registrar pago", IconSource="icon_feed.png", TargetPage =Type.GetType($"CarMuayTahiSeguimiento.Views.RegistroDePago, {asm}")},
-                new FlyoutItemPage{ Title = "Pagos", IconSource="icon_feed.png", TargetPage = Type.GetType($"CarMuayTahiSeguimiento.Views.vwPagos, {asm}")},
-                new FlyoutItemPage{ Title = "Historial de clases", IconSource="icon_feed.png", TargetPage = Type.GetType($"CarMuayTahiSeguimiento.Views.HistorialClasesTomadas, {asm}")}
-            };
-            if (MenuItems != null)
+            MenuItems = new List<FlyoutItemPage>();
+
+            RestHelper menuLst = new RestHelper(
+                @"http://ingbame.somee.com/api",
+                "App",
+                HttpMethodsEnum.Get,
+                "1"
+            );           
+
+            List<MenuItemModel> response = menuLst.RestRequest<List<MenuItemModel>>().Result;
+
+            if (!menuLst.Error)
+                if (response != null || response.Count <= 0)
+                {
+                    foreach (var item in response)
+                    {
+                        MenuItems.Add(new FlyoutItemPage { Title = item.Title, IconSource = item.IconSource, TargetPage = Type.GetType($"{item.TargetPage}, {asm}") });
+                    }
+                }
+                else
+                    DisplayAlert("Error", "Menú no se ha cargado correctamente", "Ok");
+            else
+                DisplayAlert("Error", menuLst.Message, "Ok");
+
+            if (MenuItems.Count > 0)
                 lvMenu.ItemsSource = MenuItems;
         }
     }

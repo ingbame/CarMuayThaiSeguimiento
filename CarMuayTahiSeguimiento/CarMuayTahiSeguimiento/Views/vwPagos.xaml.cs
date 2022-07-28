@@ -19,7 +19,8 @@ namespace CarMuayTahiSeguimiento.Views
                 "Security",
                 HttpMethodsEnum.Get
             );
-            prueba.RestRequest();
+            //prueba.RestRequest();
+
             //if (pagosList != null)
             //    lstPagos.ItemsSource = pagosList;
         }
